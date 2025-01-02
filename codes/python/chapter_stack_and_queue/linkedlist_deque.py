@@ -1,7 +1,7 @@
 """
 File: linkedlist_deque.py
 Created Time: 2023-03-01
-Author: Krahets (krahets@163.com)
+Author: krahets (krahets@163.com)
 """
 
 
@@ -30,12 +30,12 @@ class LinkedListDeque:
 
     def is_empty(self) -> bool:
         """判断双向队列是否为空"""
-        return self.size() == 0
+        return self._size == 0
 
     def push(self, num: int, is_front: bool):
         """入队操作"""
         node = ListNode(num)
-        # 若链表为空，则令 front, rear 都指向 node
+        # 若链表为空，则令 front 和 rear 都指向 node
         if self.is_empty():
             self._front = self._rear = node
         # 队首入队操作
