@@ -1,20 +1,19 @@
 /*
  * File: linkedlist_stack.rs
  * Created Time: 2023-03-11
- * Author: sjinzh (sjinzh@gmail.com)
+ * Author: codingonion (coderonion@gmail.com)
  */
 
-include!("../include/include.rs");
+use hello_algo_rust::include::{print_util, ListNode};
 
-use std::rc::Rc;
 use std::cell::RefCell;
-use list_node::ListNode;
+use std::rc::Rc;
 
 /* 基于链表实现的栈 */
 #[allow(dead_code)]
 pub struct LinkedListStack<T> {
-    stack_peek: Option<Rc<RefCell<ListNode<T>>>>,   // 将头节点作为栈顶
-    stk_size: usize,                                // 栈的长度
+    stack_peek: Option<Rc<RefCell<ListNode<T>>>>, // 将头节点作为栈顶
+    stk_size: usize,                              // 栈的长度
 }
 
 impl<T: Copy> LinkedListStack<T> {

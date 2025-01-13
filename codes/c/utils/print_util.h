@@ -18,50 +18,34 @@
 extern "C" {
 #endif
 
-/* Print an Array */
-static void printArray(int arr[], int size) {
-    printf("[");
-    if (arr != NULL && size != 0) {
-        for (int i = 0; i < size - 1; i++) {
-            if (arr[i] != INT_MAX) {
-                printf("%d, ", arr[i]);
-            } else {
-                printf("NULL, ");
-            }
-        }
-        if (arr[size - 1] != INT_MAX) {
-            printf("%d]\n", arr[size - 1]);
-        } else {
-            printf("NULL]\n");
-        }
-    } else {
-        printf("]\n");
+/* 打印数组 */
+void printArray(int arr[], int size) {
+    if (arr == NULL || size == 0) {
+        printf("[]");
+        return;
     }
+    printf("[");
+    for (int i = 0; i < size - 1; i++) {
+        printf("%d, ", arr[i]);
+    }
+    printf("%d]\n", arr[size - 1]);
 }
 
-/* Print an Array */
-static void printArrayFloat(float arr[], int size) {
-    printf("[");
-    if (arr != NULL && size != 0) {
-        for (int i = 0; i < size - 1; i++) {
-            if (arr[i] != INT_MAX) {
-                printf("%.2f, ", arr[i]);
-            } else {
-                printf("NULL, ");
-            }
-        }
-        if (arr[size - 1] != INT_MAX) {
-            printf("%.2f]\n", arr[size - 1]);
-        } else {
-            printf("NULL]\n");
-        }
-    } else {
-        printf("]");
+/* 打印数组 */
+void printArrayFloat(float arr[], int size) {
+    if (arr == NULL || size == 0) {
+        printf("[]");
+        return;
     }
+    printf("[");
+    for (int i = 0; i < size - 1; i++) {
+        printf("%.2f, ", arr[i]);
+    }
+    printf("%.2f]\n", arr[size - 1]);
 }
 
-/* Print a linked list */
-static void printLinkedList(ListNode *node) {
+/* 打印链表 */
+void printLinkedList(ListNode *node) {
     if (node == NULL) {
         return;
     }
@@ -85,7 +69,6 @@ Trunk *newTrunk(Trunk *prev, char *str) {
     return trunk;
 }
 
-/* Helper function to print branches of the binary tree */
 void showTrunks(Trunk *trunk) {
     if (trunk == NULL) {
         return;
@@ -94,8 +77,12 @@ void showTrunks(Trunk *trunk) {
     printf("%s", trunk->str);
 }
 
-/* Help to print a binary tree, hide more details */
-static void printTreeHelper(TreeNode *node, Trunk *prev, bool isLeft) {
+/**
+ * 打印二叉树
+ * This tree printer is borrowed from TECHIE DELIGHT
+ * https://www.techiedelight.com/c-program-print-binary-tree/
+ */
+void printTreeHelper(TreeNode *node, Trunk *prev, bool isRight) {
     if (node == NULL) {
         return;
     }
@@ -104,7 +91,7 @@ static void printTreeHelper(TreeNode *node, Trunk *prev, bool isLeft) {
     printTreeHelper(node->right, trunk, true);
     if (prev == NULL) {
         trunk->str = "———";
-    } else if (isLeft) {
+    } else if (isRight) {
         trunk->str = "/———";
         prev_str = "   |";
     } else {
@@ -122,13 +109,13 @@ static void printTreeHelper(TreeNode *node, Trunk *prev, bool isLeft) {
     printTreeHelper(node->left, trunk, false);
 }
 
-/* Print a binary tree */
-static void printTree(TreeNode *root) {
+/* 打印二叉树 */
+void printTree(TreeNode *root) {
     printTreeHelper(root, NULL, false);
 }
 
-/* Print a Heap */
-static void printHeap(int arr[], int size) {
+/* 打印堆 */
+void printHeap(int arr[], int size) {
     TreeNode *root;
     printf("堆的数组表示：");
     printArray(arr, size);
